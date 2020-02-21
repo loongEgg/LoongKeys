@@ -1,0 +1,170 @@
+﻿<Window x:Class="LoongEgg.LoongKeys.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:LoongEgg.LoongKeys"
+        xmlns:vmb="clr-namespace:LoongEgg.ViewModelBase;assembly=LoongEgg.ViewModelBase"
+        mc:Ignorable="d"
+        Title="MainWindow" 
+        WindowStartupLocation="CenterScreen"
+        Height="320" Width="360" 
+        WindowStyle="None" 
+        Background="Transparent"
+        AllowsTransparency="True"
+        SnapsToDevicePixels="True"
+        Topmost="False"> 
+    
+    <!-- 
+         微信: InnerGeeker
+         微信 / B站: 香辣恐龙蛋
+    -->
+
+    <Grid >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+
+        <!-- 标题栏和三大金刚 -->
+        <Border Grid.Row="0" 
+                x:Name="title"
+                Background="{StaticResource xBackground.Title}" 
+                MouseLeave="Border_MouseLeave"
+                MouseLeftButtonDown="Border_MouseLeftButtonDown">
+
+            <!-- 改变边框的逻辑 -->
+            <Border.Triggers>
+                <EventTrigger RoutedEvent="MouseLeave">
+                    <BeginStoryboard>
+                        <Storyboard>
+
+                            <!-- 使边框透明 -->
+                            <ColorAnimation To="Transparent"
+                                            Duration="0:0:0.2" 
+                                            Storyboard.TargetName="mainContentBorder"
+                                            Storyboard.TargetProperty="BorderBrush.Color"/>
+
+                            <!-- 改变圆角大小 -->
+                            <ObjectAnimationUsingKeyFrames 
+                                             Storyboard.TargetName="mainContentBorder"
+                                             Storyboard.TargetProperty="CornerRadius">
+                                <DiscreteObjectKeyFrame KeyTime="0:0:0.2">
+                                    <DiscreteObjectKeyFrame.Value>
+                                        <CornerRadius TopLeft="30" TopRight="30" 
+                                                      BottomLeft="30" BottomRight="30"/>
+                                    </DiscreteObjectKeyFrame.Value>
+                                </DiscreteObjectKeyFrame>
+                            </ObjectAnimationUsingKeyFrames>
+
+                            <!-- 改变边框大小 -->
+                            <!--<ThicknessAnimation To="30, 30, 30, 30"
+                                               Duration="0:0:0.2" 
+                                               Storyboard.TargetName="mainContentBorder"
+                                               Storyboard.TargetProperty="BorderThickness"/>-->
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+            </Border.Triggers>
+
+            <!-- 隐藏标题逻辑 -->
+            <x:Code>
+                <![CDATA[
+                   private void Border_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+                        => DragMove(); 
+                   private void Border_MouseLeave(object sender, MouseEventArgs e) 
+                        => title.Visibility = Visibility.Hidden; 
+            ]]>
+            </x:Code>
+
+            <!-- RelayCommand方法控制最大化、最小化和关闭 -->
+            <StackPanel HorizontalAlignment="Right"
+                    Orientation="Horizontal" 
+                    DataContext="{x:Static vmb:WindowStateManager.Instance}" >
+                <Button Content="-"   Command="{Binding CommandMinimze}"  Style="{StaticResource ButtonStyle.HoverGrowWindow}" />
+                <Button Content="[ ]" Command="{Binding CommandMaximize}" Style="{StaticResource ButtonStyle.HoverGrowWindow}" />
+                <Button Content="X"   Command="{Binding CommandClose}"    Style="{StaticResource ButtonStyle.HoverGrowWindow}" />
+            </StackPanel>
+
+        </Border>
+
+        <!-- MainContent 窗口主体 -->
+        <Border Grid.Row="1"  
+                x:Name="mainContentBorder"
+                Background="White" 
+                BorderBrush="{StaticResource xBackground.Title}" 
+                Opacity="1"
+                BorderThickness="2, 0, 2, 2"
+                MouseEnter="Border_MouseEnter">
+ 
+            <!-- Set DataContext = new MainContentViewModel{ ButtonIsEnabled = true }; -->
+            <!--<Border.DataContext>
+                <local:MainContentViewModel ButtonIsEnabled ="True"/>
+            </Border.DataContext>-->
+
+            <!-- 改变边框的逻辑 -->
+            <Border.Triggers>
+                <EventTrigger RoutedEvent="MouseEnter">
+                    <BeginStoryboard>
+                        <Storyboard>
+
+                            <!-- 使边框出现 -->
+                            <ColorAnimation To="{StaticResource xBackgroundColor.Title}"
+                                            Duration="0:0:0.2"
+                                            Storyboard.TargetName="mainContentBorder"
+                                            Storyboard.TargetProperty="BorderBrush.Color"/>
+
+                            <!-- 改变圆角大小 -->
+                            <ObjectAnimationUsingKeyFrames
+                                             Storyboard.TargetName="mainContentBorder"
+                                             Storyboard.TargetProperty="CornerRadius">
+                                <DiscreteObjectKeyFrame KeyTime="0:0:0.2">
+                                    <DiscreteObjectKeyFrame.Value>
+                                        <CornerRadius TopLeft="0" TopRight="0" 
+                                                      BottomLeft="0" BottomRight="0"/>
+                                    </DiscreteObjectKeyFrame.Value>
+                                </DiscreteObjectKeyFrame>
+                            </ObjectAnimationUsingKeyFrames>
+
+                            <!-- 改变边框大小 -->
+                            <!--<ThicknessAnimation To="6, 6, 6, 6"
+                                               Duration="0:0:0.2"
+                                               Storyboard.TargetName="mainContentBorder"
+                                               Storyboard.TargetProperty="BorderThickness"/>-->
+
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+            </Border.Triggers>
+
+            <!-- 显示标题逻辑 -->
+            <x:Code>
+                <![CDATA[
+                    private void Border_MouseEnter(object sender, MouseEventArgs e) 
+                        => title.Visibility = Visibility.Visible;
+                    ]]>
+            </x:Code>
+
+            <!-- View Model的最终用户们 -->
+            <StackPanel> 
+                
+                <!-- ViewModel 放在这里也是可以的,注意变化 -->
+                <!-- Set DataContext = new MainContentViewModel{ ButtonIsEnabled = true }; -->
+                <StackPanel.DataContext>
+                    <local:MainContentViewModel ButtonIsEnabled ="False"/>
+                </StackPanel.DataContext>
+
+                <Button Width="160" IsEnabled="{Binding ButtonIsEnabled}" 
+                        Style="{StaticResource ButtonStyle.IsEnabledGrow}"/>
+                <Button Command="{Binding CommandFlipButtonIsEnabled}"/>
+            </StackPanel>
+ 
+        </Border>
+
+
+        <!-- 页脚 -->
+
+    </Grid>
+</Window>
+

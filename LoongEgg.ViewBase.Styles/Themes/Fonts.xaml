@@ -1,0 +1,45 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:LoongEgg.ViewBase.Styles"
+                    xmlns:system="clr-namespace:System;assembly=mscorlib">
+
+
+    <!-- 
+         微信: InnerGeeker
+         微信 / B站: 香辣恐龙蛋
+    -->
+
+    <!-- [Key] 自己设置 -->
+    <!-- Let's go Digital是自己的字体文件在资源管理器中打开时显示的名字 -->
+    <FontFamily x:Key="xFonts.Digital">pack://application;,,,/Fonts/#Let's go Digital</FontFamily>
+
+    <system:Double x:Key="xFontSize.Small">16</system:Double>
+    <system:Double x:Key="xFontSize.Regular">24</system:Double>
+    <system:Double x:Key="xFontSize.Large">28</system:Double>
+    <system:Double x:Key="xFontSize.Title">60</system:Double>
+
+
+    <!-- 设置一个所有控件可以继承的字体和字号 -->
+    <Style TargetType="{x:Type Control}" x:Key="BaseStyle">
+        <Setter Property="FontFamily" Value="{StaticResource xFonts.Digital}" />
+        <!-- 像这样引用一个已经存在的字体 -->
+        <!--<Setter Property="FontFamily" Value="Source Code Pro" />-->
+        <Setter Property="FontSize" Value="{StaticResource xFontSize.Regular}" />
+    </Style>
+
+    <!-- 打前面的脸，TextBlock是另类 -->
+    <!-- 而且会影响Button -->
+    <Style TargetType="{x:Type TextBlock}" x:Key="BaseTextBlockStyle">
+        <Setter Property="FontFamily" Value="{StaticResource xFonts.Digital}" />
+        <!--<Setter Property="FontFamily" Value="Source Code Pro" />-->
+        <Setter Property="FontSize" Value="{StaticResource xFontSize.Regular}" />
+    </Style>
+
+    <!-- 设置所有控件的默认字体和字号 -->
+    <!--<Style TargetType="{x:Type Button}" BasedOn="{StaticResource BaseStyle}" />-->
+    <Style TargetType="{x:Type Label}" BasedOn="{StaticResource BaseStyle}" />
+    <Style TargetType="{x:Type TextBox}" BasedOn="{StaticResource BaseStyle}" />
+    <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource BaseTextBlockStyle}" />
+    <Style TargetType="{x:Type ListView}" BasedOn="{StaticResource BaseStyle}" />
+
+</ResourceDictionary>

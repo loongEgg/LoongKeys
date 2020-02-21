@@ -5,6 +5,21 @@ VisualStudioVersion = 15.0.28307.1022
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoongEgg.LoongKeys", "LoongEgg.LoongKeys\LoongEgg.LoongKeys.csproj", "{56338E81-8C7E-45E9-AB37-0DFD6B3A9EDD}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ViewBase", "ViewBase", "{95B30737-134E-4EDC-A2B1-3FCFE1998791}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ViewModelBase", "ViewModelBase", "{2E097DC0-6079-4D47-B9F3-632FC4FB4A14}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoongEgg.ViewBase.Styles", "LoongEgg.ViewBase.Styles\LoongEgg.ViewBase.Styles.csproj", "{DA8D85B2-2D91-4FD5-82A0-FCC8ED6F66E4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoongEgg.ViewModelBase", "LoongEgg.ViewModelBase\LoongEgg.ViewModelBase.csproj", "{DE8FF96D-AB58-44D4-A410-160C02A1248E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Note", "Note", "{101CCD0E-DF1C-46C7-8600-705BA036AC96}"
+	ProjectSection(SolutionItems) = preProject
+		工具和技巧.md = 工具和技巧.md
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoongEgg.ViewBase.Controls", "LoongEgg.ViewBase.Controls\LoongEgg.ViewBase.Controls.csproj", "{2740953F-B67B-408C-BD30-37DC6CD7A65A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,9 +30,26 @@ Global
 		{56338E81-8C7E-45E9-AB37-0DFD6B3A9EDD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{56338E81-8C7E-45E9-AB37-0DFD6B3A9EDD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{56338E81-8C7E-45E9-AB37-0DFD6B3A9EDD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DA8D85B2-2D91-4FD5-82A0-FCC8ED6F66E4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DA8D85B2-2D91-4FD5-82A0-FCC8ED6F66E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DA8D85B2-2D91-4FD5-82A0-FCC8ED6F66E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DA8D85B2-2D91-4FD5-82A0-FCC8ED6F66E4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DE8FF96D-AB58-44D4-A410-160C02A1248E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DE8FF96D-AB58-44D4-A410-160C02A1248E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DE8FF96D-AB58-44D4-A410-160C02A1248E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DE8FF96D-AB58-44D4-A410-160C02A1248E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2740953F-B67B-408C-BD30-37DC6CD7A65A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2740953F-B67B-408C-BD30-37DC6CD7A65A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2740953F-B67B-408C-BD30-37DC6CD7A65A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2740953F-B67B-408C-BD30-37DC6CD7A65A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{DA8D85B2-2D91-4FD5-82A0-FCC8ED6F66E4} = {95B30737-134E-4EDC-A2B1-3FCFE1998791}
+		{DE8FF96D-AB58-44D4-A410-160C02A1248E} = {2E097DC0-6079-4D47-B9F3-632FC4FB4A14}
+		{2740953F-B67B-408C-BD30-37DC6CD7A65A} = {95B30737-134E-4EDC-A2B1-3FCFE1998791}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {AEAE7E22-4C83-4306-824C-714EC9E2009E}

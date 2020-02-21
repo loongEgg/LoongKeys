@@ -1,0 +1,239 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!-- 
+         微信: InnerGeeker
+         微信 / B站: 香辣恐龙蛋
+    -->
+
+    <!--将 Colors 和Fonts 引用进来-->
+    <ResourceDictionary.MergedDictionaries>
+        <!--Order is important-->
+        <ResourceDictionary Source="Colors.xaml" />
+        <ResourceDictionary Source="Fonts.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+
+    <!-- Base Buttton Style -->
+    <Style  x:Key="ButtonStyle.Base"
+            BasedOn="{StaticResource BaseStyle}"
+            TargetType="{x:Type Button}">
+        <Setter Property="Foreground" Value="{StaticResource xForeground.ButtonDefault}"/>
+        <Setter Property="Background" Value="{StaticResource xBackground.ButtonDefault}"/>
+        <Setter Property="BorderBrush" Value="{StaticResource xBorderBrush.ButtonDefault}"/>
+        <Setter Property="BorderThickness" Value="2"/>
+        <Setter Property="Margin" Value="5"/>
+        <Setter Property="Height" Value="36"/>
+        <Setter Property="Width" Value="160"/>
+        <Setter Property="Content" Value="Base Style"/>
+    </Style>
+
+    <!-- 所有使用本资源 Buttton 的默认样式 -->
+    <Style BasedOn="{StaticResource ButtonStyle.Base}"
+           TargetType="{x:Type Button}">
+
+        <!-- 没有设置 Background 和 BordBrush将从 ButtonStyle.Base 继承得到 -->
+        <Setter Property="Content" Value="Default Style"/>
+    </Style>
+
+    <!-- Window Button -->
+    <Style BasedOn="{StaticResource ButtonStyle.Base}"
+           TargetType="{x:Type Button}"
+           x:Key="ButtonStyle.Window">
+        <Setter Property="Foreground"      Value="White"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="Width" Value="36"/>
+        <Setter Property="Height" Value="36"/>
+        <Setter Property="CommandParameter" Value="{Binding RelativeSource={RelativeSource AncestorType=Window}}"/>
+    </Style>
+
+    <!-- IsEnabled 时候放大的Button -->
+    <Style x:Key="ButtonStyle.IsEnabledGrow" 
+           BasedOn="{StaticResource ButtonStyle.Base}"
+           TargetType="{x:Type Button}">
+        <Setter Property="Content"   Value="IsEnable Grow"/>
+
+        <Setter Property="Foreground"     Value="Gray"/>
+        <Setter Property="Background"     Value="Transparent"/>
+        <Setter Property="BorderBrush"    Value="Gray"/>
+        <Setter Property="BorderThickness"    Value="2"/>
+
+        <Setter Property="Margin"    Value="5"/>
+        <Setter Property="Padding"   Value="5"/>
+        <Setter Property="Height"    Value="36"/>
+        <Setter Property="Width"     Value="36"/>
+
+        <Setter Property="IsEnabled" Value="False"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ButtonBase">
+                    <Border x:Name="border" 
+                            BorderBrush="{TemplateBinding BorderBrush}" 
+                            BorderThickness="{TemplateBinding BorderThickness}" 
+                            Background="{TemplateBinding Background}" 
+                            SnapsToDevicePixels="True">
+
+                        <!-- 以下新增 -->
+                        <Border.RenderTransform>
+                            <!-- 缩放变换 -->
+                            <ScaleTransform/>
+                        </Border.RenderTransform>
+
+                        <!--指定缩放原点-->
+                        <Border.RenderTransformOrigin>
+                            <!-- Border的中心 -->
+                            <Point X="0.5" Y="0.5"/>
+                        </Border.RenderTransformOrigin>
+
+                        <!-- 包一个ViewBox, 如果字符过长会自动缩放内容 -->
+                        <Viewbox>
+                            <!-- 原来是ContentPresenter -->
+                            <TextBlock  
+                                    Text="{TemplateBinding Content}" 
+                                    Focusable="False" 
+                                    HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
+                                    Margin="{TemplateBinding Padding}" 
+                                    SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" 
+                                    VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </Viewbox>
+                        <!-- 以上新增 -->
+                    </Border>
+                    <ControlTemplate.Triggers>
+    <!-- 
+         微信: InnerGeeker
+         微信 / B站: 香辣恐龙蛋
+    -->
+                        <!-- 属性改变时触发 -->
+                        <Trigger Property="IsEnabled" Value="True">
+
+                            <!-- 即时设置 -->
+                            <Setter Property="BorderBrush" TargetName="border" 
+                                    Value="{StaticResource xBorderBrush.ButtonIsEnabled}"/>
+                            <Setter Property="Foreground"  
+                                    Value="{StaticResource xForeground.ButtonIsEnabled}"/>
+
+                            <!-- 动画效果 [AutoReverse="True"]播放完后自动还原 -->
+                            <Trigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation To="1.5"  Duration="0:0:0.2" AutoReverse="True"
+                                                         Storyboard.TargetName="border"
+                                                         Storyboard.TargetProperty="(RenderTransform).(ScaleTransform.ScaleX)"/>
+                                        <DoubleAnimation To="1.5"  Duration="0:0:0.2" AutoReverse="True"
+                                                         Storyboard.TargetName="border"
+                                                         Storyboard.TargetProperty="(RenderTransform).(ScaleTransform.ScaleY)"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.EnterActions>
+
+                            <!-- 在[IsEabled = False]时触发 -->
+                            <Trigger.ExitActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation To="0.5"  Duration="0:0:0.2" AutoReverse="True"
+                                                         Storyboard.TargetName="border"
+                                                         Storyboard.TargetProperty="(RenderTransform).(ScaleTransform.ScaleX)"/>
+                                        <DoubleAnimation To="0.5"  Duration="0:0:0.2" AutoReverse="True"
+                                                         Storyboard.TargetName="border"
+                                                         Storyboard.TargetProperty="(RenderTransform).(ScaleTransform.ScaleY)"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.ExitActions>
+
+                        </Trigger>
+
+                        <Trigger Property="IsEnabled" Value="False">
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!-- 
+         微信: InnerGeeker
+         微信 / B站: 香辣恐龙蛋
+    -->
+    
+    <!-- 悬停时放大的 Window Button -->
+    <Style x:Key="ButtonStyle.HoverGrowWindow" 
+           TargetType="{x:Type Button}"
+           BasedOn="{StaticResource ButtonStyle.Window}">
+        <Setter Property="Background"  Value="Transparent"/>
+        <Setter Property="Content" Value="Hover Grow"/>
+        <Setter Property="Margin"  Value="5"/>
+        <Setter Property="Width"  Value="32"/>
+        <Setter Property="Height"  Value="32"/>
+
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ButtonBase}">
+                    <Border x:Name="border" 
+                            BorderBrush="{TemplateBinding BorderBrush}" 
+                            BorderThickness="{TemplateBinding BorderThickness}" 
+                            Background="{TemplateBinding Background}" 
+                            SnapsToDevicePixels="True">
+
+                        <!-- 以下新增 -->
+                        <Border.RenderTransform>
+                            <!-- 缩放变换 -->
+                            <ScaleTransform/>
+                        </Border.RenderTransform>
+
+                        <Border.RenderTransformOrigin>
+                            <!-- 缩放原点在Border中心 -->
+                            <Point X="0.5" Y="0.5"/>
+                        </Border.RenderTransformOrigin>
+
+                        <!-- 原来是ContentPresenter -->
+                        <TextBlock  Text="{TemplateBinding Content}" 
+                                    Focusable="False" 
+                                    HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                    Margin="{TemplateBinding Padding}"   
+                                    SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" 
+                                    VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        <!-- 以上新增 -->
+                    </Border>
+
+                    <ControlTemplate.Triggers>
+
+                        <!-- 事件发生时触发 => 鼠标进入时 -->
+                        <EventTrigger RoutedEvent="MouseEnter">
+                            <BeginStoryboard>
+                                <Storyboard >
+                                    <DoubleAnimation To="1.2" Duration="0:0:0.2"
+                                                     Storyboard.TargetName="border"
+                                                     Storyboard.TargetProperty="(RenderTransform).(ScaleTransform.ScaleY)"/>
+                                    <DoubleAnimation To="1.2" Duration="0:0:0.2"
+                                                     Storyboard.TargetName="border"
+                                                     Storyboard.TargetProperty="(RenderTransform).(ScaleTransform.ScaleX)"/>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+
+                        <!-- 事件发生时触发 => 鼠标离开时 -->
+                        <EventTrigger RoutedEvent="MouseLeave">
+                            <BeginStoryboard>
+                                <Storyboard >
+                                    <DoubleAnimation To="1" Duration="0:0:0.2"
+                                                     Storyboard.TargetName="border"
+                                                     Storyboard.TargetProperty="(RenderTransform).(ScaleTransform.ScaleY)"/>
+                                    <DoubleAnimation To="1" Duration="0:0:0.2"
+                                                     Storyboard.TargetName="border"
+                                                     Storyboard.TargetProperty="(RenderTransform).(ScaleTransform.ScaleX)"/>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+
+                        <!-- 属性改变时触发 => 鼠标处于控件内 -->
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="Red" TargetName="border"/>
+                        </Trigger>
+
+                    </ControlTemplate.Triggers>
+
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+</ResourceDictionary>
