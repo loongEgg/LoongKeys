@@ -1,5 +1,7 @@
 ﻿using LoongEgg.KeyboardHook;
 using LoongEgg.ViewModelBase;
+using System;
+using System.Diagnostics;
 using System.Windows.Input;
 
 namespace LoongEgg.LoongKeys
@@ -15,6 +17,13 @@ namespace LoongEgg.LoongKeys
         }
         private bool _ButtonIsEnabled;
 
+
+        public string Temp {
+            get => _Temp;
+            set => Set(ref _Temp, value); 
+        }
+        private string _Temp;
+         
         /// <summary>
         ///     翻转<see cref="ButtonIsEnabled"/>命令
         /// </summary>
@@ -23,13 +32,21 @@ namespace LoongEgg.LoongKeys
             ?? (_CommandFlipButtonIsEnabled = new RelayCommand((e) => ButtonIsEnabled = !ButtonIsEnabled));
         private RelayCommand _CommandFlipButtonIsEnabled;
 
-        readonly GlobalListenerOnKeyboard listenerOnKeyboard;
+        /// <summary>
+        ///     全局键盘监控器
+        /// </summary>
+        readonly GlobalKeyboardListener listenerOnKeyboard;
 
         public MainContentViewModel()
         {
-            listenerOnKeyboard = new GlobalListenerOnKeyboard();
+            listenerOnKeyboard = new GlobalKeyboardListener();
             listenerOnKeyboard.SetHook();
+            listenerOnKeyboard.GlobalKeyboardInputEvent += GlobalKeyboard_InputEvent;
         }
 
+        private void GlobalKeyboard_InputEvent(object sender, GlobalKeyboardInputEvent e)
+        {
+            Temp = $"{e.Key} {e.KeyAction}";
+        }
     }
 }

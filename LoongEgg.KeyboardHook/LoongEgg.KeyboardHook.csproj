@@ -43,7 +43,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaseGlobalListener.cs" />
-    <Compile Include="GlobalListenerOnKeyboard.cs" />
+    <Compile Include="GlobalKeyboardInputEvent.cs" />
+    <Compile Include="GlobalKeyboardListener.cs" />
     <Compile Include="IdHooks.cs" />
     <Compile Include="KeyAction.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

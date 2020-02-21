@@ -58,7 +58,6 @@ namespace LoongEgg.ViewModelBase
         /// </returns>
         public bool Set<T>(ref T target, T value, [CallerMemberName]string propertyName = null)
         {
-            // 如果value没有变化
             if (EqualityComparer<T>.Default.Equals(target, value))
                 return false;
 

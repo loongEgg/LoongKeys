@@ -158,6 +158,7 @@
                 <Button Width="160" IsEnabled="{Binding ButtonIsEnabled}" 
                         Style="{StaticResource ButtonStyle.IsEnabledGrow}"/>
                 <Button Command="{Binding CommandFlipButtonIsEnabled}"/>
+                <Button Content="{Binding Temp}"/>
             </StackPanel>
  
         </Border>

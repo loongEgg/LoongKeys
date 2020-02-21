@@ -1,27 +1,40 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace LoongEgg.KeyboardHook
 {
 
-    public class GlobalListenerOnKeyboard : BaseGlobalListener
+    /// <summary>
+    ///     全局键盘监听器
+    ///     Global Keyboard Listener
+    /// </summary>
+    public class GlobalKeyboardListener : BaseGlobalListener
     {
+        public EventHandler<GlobalKeyboardInputEvent> GlobalKeyboardInputEvent { get; set; }
+
         /// <summary>
         ///     键盘状态记录表
         /// </summary>
         private static Dictionary<string, KeyAction> KeysStatus;
 
-        static GlobalListenerOnKeyboard()
+        /// <summary>
+        ///     初始化键盘记录表
+        ///     Initialize KeysStatus
+        /// </summary>
+        static GlobalKeyboardListener()
         {
             if (KeysStatus == null)
             {
                 KeysStatus = new Dictionary<string, KeyAction>();
 
+                // (Enum => Array => List).ForEach()
                 Enum.GetValues(typeof(Key)).OfType<Key>().ToList()
                     .ForEach(
                        key =>
@@ -35,8 +48,24 @@ namespace LoongEgg.KeyboardHook
             }
         }
 
-        public GlobalListenerOnKeyboard() : base(IdHooks.WH_KEYBOARD_LL) { }
+        /// <summary>
+        ///     Constructor of <see cref="GlobalKeyboardListener"/>
+        /// </summary>
+        public GlobalKeyboardListener() : base(IdHooks.WH_KEYBOARD_LL) { }
 
+        /// <summary>
+        ///     当发生键盘输入时钩子会自动调用此方法
+        ///     Called when a keyboard input happen
+        /// </summary>
+        ///     <param name="nCode">
+        ///         哪一个键发生了输入
+        ///     </param>
+        ///     <param name="wParam">
+        ///         事件类型，抬起/按下？
+        ///     </param>
+        ///     <param name="lParam">
+        ///     </param>
+        /// <returns></returns>
         protected override IntPtr HookCallBack(int nCode, IntPtr wParam, IntPtr lParam)
         {
             if (nCode >= 0) // 大于等于0才是正确的消息
@@ -44,35 +73,40 @@ namespace LoongEgg.KeyboardHook
                 // 虚拟键盘码转位WPF中的键盘值
                 Key key = KeyInterop.KeyFromVirtualKey(Marshal.ReadInt32(lParam));
                 string index = key.ToString();
+                KeyAction action = KeyAction.Up; ;
 
                 // 按下事件
                 if (wParam == (IntPtr)WM.KEYDOWN || wParam == (IntPtr)WM.SYSKEYDOWN)
                 {
                     if (KeysStatus[index] == KeyAction.Down)
                     {
-                        KeysStatus[index] = KeyAction.Pressed;
-                        //ListenerEvent?.Invoke(this, new GlobalKeyEventArgs(key, KeyAction.Pressed));
+                        action = KeyAction.Pressed;
                     }
                     else if (KeysStatus[index] == KeyAction.Pressed)
                     {
-                        // do nothing
+                        action = KeyAction.Pressed;
                     }
                     else if (KeysStatus[index] == KeyAction.Up)
                     {
-                        KeysStatus[index] = KeyAction.Down;
-                        //ListenerEvent?.Invoke(this, new GlobalKeyEventArgs(key, KeyAction.Down));
+                        action = KeyAction.Down;
+                    }
+                }
+                else if (wParam == (IntPtr)WM.KEYUP || wParam == (IntPtr)WM.SYSKEYUP) // 抬起事件
+                {
+                    if (KeysStatus[index] != KeyAction.Up)
+                    {
+                        action = KeyAction.Up;
                     }
                 }
 
-                // 抬起事件
-                if (wParam == (IntPtr)WM.KEYUP || wParam == (IntPtr)WM.SYSKEYUP)
-                {
-                    KeysStatus[index] = KeyAction.Up;
-                    //ListenerEvent?.Invoke(this, new GlobalKeyEventArgs(key, KeyAction.Up));
-                }
+                KeysStatus[index] = action;
+                Debug.WriteLine($"{index} {KeysStatus[index]}");
+                GlobalKeyboardInputEvent?.Invoke(this, new GlobalKeyboardInputEvent(index, KeysStatus[index]));
+
             }
 
             return CallNextHookEx(nCode, wParam, lParam);
         }
+
     }
 }

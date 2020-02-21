@@ -6,11 +6,11 @@ namespace LoongEgg.KeyboardHook.Test
     [TestClass]
     public class GlobalListenerOnKeyboard_Test
     {
-        GlobalListenerOnKeyboard listener;
+        GlobalKeyboardListener listener;
         [TestInitialize]
         public void Init()
         {
-            listener = new GlobalListenerOnKeyboard();
+            listener = new GlobalKeyboardListener();
         }
 
         [TestMethod]
