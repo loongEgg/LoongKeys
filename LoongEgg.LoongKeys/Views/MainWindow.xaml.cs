@@ -1,4 +1,8 @@
-﻿using System.Windows;
+﻿using System;
+using System.Runtime.InteropServices;
+using System.Windows;
+using System.Windows.Interop;
+using System.Windows.Media;
 
 namespace LoongEgg.LoongKeys
 {
@@ -9,7 +13,7 @@ namespace LoongEgg.LoongKeys
     {
         public MainWindow()
         {
-            InitializeComponent(); 
+            InitializeComponent();
         }
 
         // Step: 00.项目结构
@@ -31,5 +35,7 @@ namespace LoongEgg.LoongKeys
 
         // TODO: 完成前后端的最后绑定与界面设计
         // TODO: TextBlock的放大效果
+
+      
     }
 }

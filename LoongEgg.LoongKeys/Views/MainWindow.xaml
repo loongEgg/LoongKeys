@@ -9,12 +9,14 @@
         Title="MainWindow" 
         WindowStartupLocation="CenterScreen"
         Height="180" Width="360" 
+        Background="Transparent"  
         WindowStyle="None" 
-        Background="Transparent"
         AllowsTransparency="True"
         SnapsToDevicePixels="True"
-        Topmost="False"> 
-    
+        Topmost="True">
+
+         
+
     <!-- 
          微信: InnerGeeker
          微信 / B站: 香辣恐龙蛋
@@ -34,6 +36,7 @@
                 MouseLeave="Border_MouseLeave"
                 MouseLeftButtonDown="Border_MouseLeftButtonDown">
 
+                <!--Background="{StaticResource xBackground.Title}"--> 
             <!-- 改变边框的逻辑 -->
             <Border.Triggers>
                 <EventTrigger RoutedEvent="MouseLeave">
@@ -47,7 +50,7 @@
                                             Storyboard.TargetProperty="BorderBrush.Color"/>
 
                             <!-- 改变圆角大小 -->
-                            <ObjectAnimationUsingKeyFrames 
+                            <!--<ObjectAnimationUsingKeyFrames 
                                              Storyboard.TargetName="mainContentBorder"
                                              Storyboard.TargetProperty="CornerRadius">
                                 <DiscreteObjectKeyFrame KeyTime="0:0:0.2">
@@ -56,7 +59,7 @@
                                                       BottomLeft="30" BottomRight="30"/>
                                     </DiscreteObjectKeyFrame.Value>
                                 </DiscreteObjectKeyFrame>
-                            </ObjectAnimationUsingKeyFrames>
+                            </ObjectAnimationUsingKeyFrames>-->
 
                             <!-- 改变边框大小 -->
                             <!--<ThicknessAnimation To="30, 30, 30, 30"
@@ -67,7 +70,7 @@
                     </BeginStoryboard>
                 </EventTrigger>
             </Border.Triggers>
-
+   
             <!-- 隐藏标题逻辑 -->
             <x:Code>
                 <![CDATA[
@@ -92,10 +95,10 @@
         <!-- MainContent 窗口主体 -->
         <Border Grid.Row="1"  
                 x:Name="mainContentBorder"
-                Background="White" 
+                Background="Transparent" 
                 BorderBrush="{StaticResource xBackground.Title}" 
                 Opacity="1"
-                Padding="6"
+                Padding="0"
                 BorderThickness="2, 0, 2, 2"
                 MouseEnter="Border_MouseEnter">
  
@@ -117,7 +120,7 @@
                                             Storyboard.TargetProperty="BorderBrush.Color"/>
 
                             <!-- 改变圆角大小 -->
-                            <ObjectAnimationUsingKeyFrames
+                            <!--<ObjectAnimationUsingKeyFrames
                                              Storyboard.TargetName="mainContentBorder"
                                              Storyboard.TargetProperty="CornerRadius">
                                 <DiscreteObjectKeyFrame KeyTime="0:0:0.2">
@@ -126,7 +129,7 @@
                                                       BottomLeft="0" BottomRight="0"/>
                                     </DiscreteObjectKeyFrame.Value>
                                 </DiscreteObjectKeyFrame>
-                            </ObjectAnimationUsingKeyFrames>
+                            </ObjectAnimationUsingKeyFrames>-->
 
                             <!-- 改变边框大小 -->
                             <!--<ThicknessAnimation To="6, 6, 6, 6"
@@ -138,7 +141,7 @@
                     </BeginStoryboard>
                 </EventTrigger>
             </Border.Triggers>
-
+ 
             <!-- 显示标题逻辑 -->
             <x:Code>
                 <![CDATA[
@@ -159,12 +162,41 @@
                     <local:MainContentViewModel />
                 </Grid.DataContext>
 
+                <Border Background="White" 
+                        Grid.Row="0" 
+                        Grid.RowSpan="2"
+                        Opacity="0.15"
+                        BorderBrush="Black"
+                        BorderThickness="3"
+                        >
+                    <Border.Effect>
+                        <BlurEffect KernelType="Gaussian"
+                                    Radius="0" 
+                                    RenderingBias="Quality"/> 
+                    </Border.Effect>
+                     
+                </Border>
+
                 <UniformGrid Grid.Row="0"
-                             Columns="3">
+                             Columns="3" 
+                             Opacity="1">
                     <Button Content="Ctrl"  Style="{StaticResource ButtonStyle.IsEnabledGrow}" IsEnabled="{Binding IsCtrlEnabled}"/>
                     <Button Content="Shift" Style="{StaticResource ButtonStyle.IsEnabledGrow}" IsEnabled="{Binding IsShiftEnabled}"/>
                     <Button Content="Alt"   Style="{StaticResource ButtonStyle.IsEnabledGrow}" IsEnabled="{Binding IsAltEnabled}"/> 
                 </UniformGrid>
+
+                <Border Grid.Row="0" 
+                        Grid.RowSpan="2"
+                        Opacity="0.3"
+                        BorderBrush="Black"
+                        BorderThickness="2">
+                    <Border.Effect>
+                        <DropShadowEffect 
+                            BlurRadius="1" 
+                            ShadowDepth="2"
+                            RenderingBias="Quality" Opacity="1"/>
+                    </Border.Effect> 
+                </Border>
             </Grid>
  
         </Border>
