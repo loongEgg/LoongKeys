@@ -1,4 +1,5 @@
-﻿using LoongEgg.ViewModelBase;
+﻿using LoongEgg.KeyboardHook;
+using LoongEgg.ViewModelBase;
 using System.Windows.Input;
 
 namespace LoongEgg.LoongKeys
@@ -21,6 +22,14 @@ namespace LoongEgg.LoongKeys
             _CommandFlipButtonIsEnabled
             ?? (_CommandFlipButtonIsEnabled = new RelayCommand((e) => ButtonIsEnabled = !ButtonIsEnabled));
         private RelayCommand _CommandFlipButtonIsEnabled;
+
+        readonly GlobalListenerOnKeyboard listenerOnKeyboard;
+
+        public MainContentViewModel()
+        {
+            listenerOnKeyboard = new GlobalListenerOnKeyboard();
+            listenerOnKeyboard.SetHook();
+        }
 
     }
 }

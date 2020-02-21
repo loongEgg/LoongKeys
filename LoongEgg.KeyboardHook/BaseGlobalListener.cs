@@ -20,7 +20,7 @@ namespace LoongEgg.KeyboardHook
         /// <summary>
         ///     钩子句柄
         /// </summary>
-        protected IntPtr _HookId = IntPtr.Zero;
+        public IntPtr HookId { get; protected set; } = IntPtr.Zero;
 
         private bool disposed = false;
 
@@ -33,7 +33,7 @@ namespace LoongEgg.KeyboardHook
         ///     </param>
         protected BaseGlobalListener(IdHooks idHook)
         {
-            IdHook = IdHook;
+            IdHook = idHook;
             _HookProc = HookCallBack;
         }
 
@@ -44,10 +44,10 @@ namespace LoongEgg.KeyboardHook
             if (disposed || disposing)
                 return;
 
-            if (_HookId != IntPtr.Zero)
+            if (HookId != IntPtr.Zero)
             {
                 User32Dll.UnhookWindowsHookEx(
-                    _HookId);
+                    HookId);
             }
             disposed = true;
         }
@@ -60,7 +60,7 @@ namespace LoongEgg.KeyboardHook
         /// </summary>
         public void SetHook()
         {
-            _HookId = SetHook(_HookProc);
+            HookId = SetHook(_HookProc); 
         }
          
         /// <summary>
@@ -68,7 +68,7 @@ namespace LoongEgg.KeyboardHook
         /// </summary>
         public void UnHook()
         {
-            User32Dll.UnhookWindowsHookEx(_HookId);
+            User32Dll.UnhookWindowsHookEx(HookId);
         }
 
         /*--------------------------  Private Methods  -------------------------*/
@@ -89,14 +89,14 @@ namespace LoongEgg.KeyboardHook
             using (Process curProcess = Process.GetCurrentProcess()) // 获取新的 Process 组件并将其与当前活动的进程关联。
             {
                 using (ProcessModule curModule = curProcess.MainModule) // 获取关联进程的主模块。
-                {
-                    return
-                        User32Dll.SetWindowsHookEx(
+                { 
+                        var ret = User32Dll.SetWindowsHookEx(
                             (int)IdHook,
                             proc,
                             User32Dll.GetModuleHandle(curModule.ModuleName),
                             0
                         );
+                    return ret;
                 }
             }
         }
@@ -118,6 +118,6 @@ namespace LoongEgg.KeyboardHook
         /// <param name="lParam"></param>
         /// <returns></returns>
         protected IntPtr CallNextHookEx(int nCode, IntPtr wParam, IntPtr lParam)
-            => User32Dll.CallNextHookEx(_HookId, nCode, wParam, lParam); 
+            => User32Dll.CallNextHookEx(HookId, nCode, wParam, lParam); 
     }
 }

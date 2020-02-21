@@ -15,7 +15,26 @@ namespace LoongEgg.KeyboardHook
         ///     键盘状态记录表
         /// </summary>
         private static Dictionary<string, KeyAction> KeysStatus;
-         
+
+        static GlobalListenerOnKeyboard()
+        {
+            if (KeysStatus == null)
+            {
+                KeysStatus = new Dictionary<string, KeyAction>();
+
+                Enum.GetValues(typeof(Key)).OfType<Key>().ToList()
+                    .ForEach(
+                       key =>
+                       {
+                           // NOTE: WPF的Key中有使用同一个索引号的键值：）
+                           if (!KeysStatus.ContainsKey(key.ToString()))
+                               KeysStatus.Add(key.ToString(), KeyAction.Up);
+                       }
+
+                    );
+            }
+        }
+
         public GlobalListenerOnKeyboard() : base(IdHooks.WH_KEYBOARD_LL) { }
 
         protected override IntPtr HookCallBack(int nCode, IntPtr wParam, IntPtr lParam)

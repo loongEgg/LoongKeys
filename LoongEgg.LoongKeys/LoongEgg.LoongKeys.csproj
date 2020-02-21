@@ -96,6 +96,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\LoongEgg.KeyboardHook\LoongEgg.KeyboardHook.csproj">
+      <Project>{e4eec062-13fa-478f-9b4d-d2e69c460d8f}</Project>
+      <Name>LoongEgg.KeyboardHook</Name>
+    </ProjectReference>
     <ProjectReference Include="..\LoongEgg.ViewBase.Styles\LoongEgg.ViewBase.Styles.csproj">
       <Project>{da8d85b2-2d91-4fd5-82a0-fcc8ed6f66e4}</Project>
       <Name>LoongEgg.ViewBase.Styles</Name>
