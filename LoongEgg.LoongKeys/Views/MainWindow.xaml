@@ -8,7 +8,7 @@
         mc:Ignorable="d"
         Title="MainWindow" 
         WindowStartupLocation="CenterScreen"
-        Height="320" Width="360" 
+        Height="180" Width="360" 
         WindowStyle="None" 
         Background="Transparent"
         AllowsTransparency="True"
@@ -24,7 +24,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="50"/>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="50"/>
+            <RowDefinition Height="0"/>
         </Grid.RowDefinitions>
 
         <!-- 标题栏和三大金刚 -->
@@ -95,6 +95,7 @@
                 Background="White" 
                 BorderBrush="{StaticResource xBackground.Title}" 
                 Opacity="1"
+                Padding="6"
                 BorderThickness="2, 0, 2, 2"
                 MouseEnter="Border_MouseEnter">
  
