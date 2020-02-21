@@ -20,6 +20,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Note", "Note", "{101CCD0E-D
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoongEgg.ViewBase.Controls", "LoongEgg.ViewBase.Controls\LoongEgg.ViewBase.Controls.csproj", "{2740953F-B67B-408C-BD30-37DC6CD7A65A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoongEgg.KeyboardHook", "LoongEgg.KeyboardHook\LoongEgg.KeyboardHook.csproj", "{E4EEC062-13FA-478F-9B4D-D2E69C460D8F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -42,6 +44,10 @@ Global
 		{2740953F-B67B-408C-BD30-37DC6CD7A65A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2740953F-B67B-408C-BD30-37DC6CD7A65A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2740953F-B67B-408C-BD30-37DC6CD7A65A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E4EEC062-13FA-478F-9B4D-D2E69C460D8F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E4EEC062-13FA-478F-9B4D-D2E69C460D8F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E4EEC062-13FA-478F-9B4D-D2E69C460D8F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E4EEC062-13FA-478F-9B4D-D2E69C460D8F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
