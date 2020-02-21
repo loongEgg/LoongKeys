@@ -22,9 +22,10 @@ namespace LoongEgg.LoongKeys
         // Step: 06.通过EnventTrigger和Animation改变边框圆角、大小和消隐
         // Step: 07.在样式中设置EventTrigger，实现事件驱动的按键的放大效果
         // Step: 08.属性变化驱动的Animation，再次拥抱ViewModel
-        // Step: 09.CodeSnippet代码片段的创建
+        // Step: 09.CodeSnippet代码片段的创建 
+        // Step: 10.截获键盘输入的底层实现User32.dll
 
-        // TODO: 10.截获键盘输入的底层实现User32.dll
+        // Step: 11.创建全局侦听的基类
 
         // TODO: 键盘截获事件 
         // TODO: 把键盘事件发送的消息正确处理
