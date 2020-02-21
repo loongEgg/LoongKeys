@@ -9,28 +9,37 @@ namespace LoongEgg.LoongKeys
     public class MainContentViewModel : BaseViewModel
     {
         /// <summary>
-        ///     按键可用标志
+        ///     IsCtrlEnabled
         /// </summary>
-        public bool ButtonIsEnabled {
-            get => _ButtonIsEnabled;
-            set => Set(ref _ButtonIsEnabled, value);
+        public bool IsCtrlEnabled {
+            get => _IsCtrlEnabled;
+            set => Set(ref _IsCtrlEnabled, value);
         }
-        private bool _ButtonIsEnabled;
+        private bool _IsCtrlEnabled;
 
+        // IsShiftEnabled
 
-        public string Temp {
-            get => _Temp;
-            set => Set(ref _Temp, value); 
+        public bool IsShiftEnabled {
+            get => _IsShiftEnabled;
+            set => Set(ref _IsShiftEnabled, value);
         }
-        private string _Temp;
-         
-        /// <summary>
-        ///     翻转<see cref="ButtonIsEnabled"/>命令
-        /// </summary>
-        public ICommand CommandFlipButtonIsEnabled =>
-            _CommandFlipButtonIsEnabled
-            ?? (_CommandFlipButtonIsEnabled = new RelayCommand((e) => ButtonIsEnabled = !ButtonIsEnabled));
-        private RelayCommand _CommandFlipButtonIsEnabled;
+        private bool _IsShiftEnabled;
+
+        // IsAltEnabled
+
+        public bool IsAltEnabled {
+            get => _IsAltEnabled;
+            set => Set(ref _IsAltEnabled, value);
+        }
+        private bool _IsAltEnabled;
+
+        // IsTabEnabled 
+        public bool IsTabEnabled {
+            get => _IsTabEnabled;
+            set => Set(ref _IsTabEnabled, value);
+        }
+        private bool _IsTabEnabled;
+
 
         /// <summary>
         ///     全局键盘监控器
@@ -46,7 +55,7 @@ namespace LoongEgg.LoongKeys
 
         private void GlobalKeyboard_InputEvent(object sender, GlobalKeyboardInputEvent e)
         {
-            Temp = $"{e.Key} {e.KeyAction}";
+            KeyInputHelper.ModifierCheck(this, e.Key, e.KeyAction);
         }
     }
 }

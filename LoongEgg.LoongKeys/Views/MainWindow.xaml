@@ -147,19 +147,24 @@
             </x:Code>
 
             <!-- View Model的最终用户们 -->
-            <StackPanel> 
-                
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
                 <!-- ViewModel 放在这里也是可以的,注意变化 -->
                 <!-- Set DataContext = new MainContentViewModel{ ButtonIsEnabled = true }; -->
-                <StackPanel.DataContext>
-                    <local:MainContentViewModel ButtonIsEnabled ="False"/>
-                </StackPanel.DataContext>
+                <Grid.DataContext>
+                    <local:MainContentViewModel />
+                </Grid.DataContext>
 
-                <Button Width="160" IsEnabled="{Binding ButtonIsEnabled}" 
-                        Style="{StaticResource ButtonStyle.IsEnabledGrow}"/>
-                <Button Command="{Binding CommandFlipButtonIsEnabled}"/>
-                <Button Content="{Binding Temp}"/>
-            </StackPanel>
+                <UniformGrid Grid.Row="0"
+                             Columns="3">
+                    <Button Content="Ctrl"  Style="{StaticResource ButtonStyle.IsEnabledGrow}" IsEnabled="{Binding IsCtrlEnabled}"/>
+                    <Button Content="Shift" Style="{StaticResource ButtonStyle.IsEnabledGrow}" IsEnabled="{Binding IsShiftEnabled}"/>
+                    <Button Content="Alt"   Style="{StaticResource ButtonStyle.IsEnabledGrow}" IsEnabled="{Binding IsAltEnabled}"/> 
+                </UniformGrid>
+            </Grid>
  
         </Border>
 

@@ -9,8 +9,7 @@ namespace LoongEgg.LoongKeys
     {
         public MainWindow()
         {
-            InitializeComponent();
-            DataContext = new MainContentViewModel { ButtonIsEnabled = true };
+            InitializeComponent(); 
         }
 
         // Step: 00.项目结构
@@ -27,9 +26,8 @@ namespace LoongEgg.LoongKeys
         // Step: 11.创建全局侦听的基类 
         // Step: 12.初步实现键盘监听器，用单元测试发现一个问题 
         // Step: 13.用Debug输出检查键盘监听器的功能 
-        // Step: 14.完善键盘监听器的截获事件 
-
-        // TODO: 15.四大金刚的按压事件
+        // Step: 14.完善键盘监听器的截获事件  
+        // TODO: 15.三大金刚的按压事件
 
         // TODO: 完成前后端的最后绑定与界面设计
         // TODO: TextBlock的放大效果

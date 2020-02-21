@@ -22,15 +22,14 @@
         <Setter Property="BorderBrush" Value="{StaticResource xBorderBrush.ButtonDefault}"/>
         <Setter Property="BorderThickness" Value="2"/>
         <Setter Property="Margin" Value="5"/>
-        <Setter Property="Height" Value="36"/>
-        <Setter Property="Width" Value="160"/>
+        <!--<Setter Property="Height" Value="36"/>
+        <Setter Property="Width" Value="160"/>-->
         <Setter Property="Content" Value="Base Style"/>
     </Style>
 
     <!-- 所有使用本资源 Buttton 的默认样式 -->
     <Style BasedOn="{StaticResource ButtonStyle.Base}"
-           TargetType="{x:Type Button}">
-
+           TargetType="{x:Type Button}"> 
         <!-- 没有设置 Background 和 BordBrush将从 ButtonStyle.Base 继承得到 -->
         <Setter Property="Content" Value="Default Style"/>
     </Style>
@@ -58,9 +57,7 @@
         <Setter Property="BorderThickness"    Value="2"/>
 
         <Setter Property="Margin"    Value="5"/>
-        <Setter Property="Padding"   Value="5"/>
-        <Setter Property="Height"    Value="36"/>
-        <Setter Property="Width"     Value="36"/>
+        <Setter Property="Padding"   Value="5"/> 
 
         <Setter Property="IsEnabled" Value="False"/>
         <Setter Property="Template">
@@ -110,15 +107,20 @@
                                     Value="{StaticResource xBorderBrush.ButtonIsEnabled}"/>
                             <Setter Property="Foreground"  
                                     Value="{StaticResource xForeground.ButtonIsEnabled}"/>
+                            <Setter Property="FontWeight"  Value="Bold"/>
 
                             <!-- 动画效果 [AutoReverse="True"]播放完后自动还原 -->
                             <Trigger.EnterActions>
                                 <BeginStoryboard>
                                     <Storyboard>
-                                        <DoubleAnimation To="1.5"  Duration="0:0:0.2" AutoReverse="True"
+                                        <DoubleAnimation To="1.2"  
+                                                         Duration="0:0:0.15" 
+                                                         AutoReverse="True"
                                                          Storyboard.TargetName="border"
                                                          Storyboard.TargetProperty="(RenderTransform).(ScaleTransform.ScaleX)"/>
-                                        <DoubleAnimation To="1.5"  Duration="0:0:0.2" AutoReverse="True"
+                                        <DoubleAnimation To="1.2"  
+                                                         Duration="0:0:0.15" 
+                                                         AutoReverse="True"
                                                          Storyboard.TargetName="border"
                                                          Storyboard.TargetProperty="(RenderTransform).(ScaleTransform.ScaleY)"/>
                                     </Storyboard>
@@ -129,10 +131,10 @@
                             <Trigger.ExitActions>
                                 <BeginStoryboard>
                                     <Storyboard>
-                                        <DoubleAnimation To="0.5"  Duration="0:0:0.2" AutoReverse="True"
+                                        <DoubleAnimation To="1.0"  Duration="0:0:0.2"
                                                          Storyboard.TargetName="border"
                                                          Storyboard.TargetProperty="(RenderTransform).(ScaleTransform.ScaleX)"/>
-                                        <DoubleAnimation To="0.5"  Duration="0:0:0.2" AutoReverse="True"
+                                        <DoubleAnimation To="1.0"  Duration="0:0:0.2" 
                                                          Storyboard.TargetName="border"
                                                          Storyboard.TargetProperty="(RenderTransform).(ScaleTransform.ScaleY)"/>
                                     </Storyboard>

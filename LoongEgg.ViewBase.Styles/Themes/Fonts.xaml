@@ -20,7 +20,7 @@
 
 
     <!-- 设置一个所有控件可以继承的字体和字号 -->
-    <Style TargetType="{x:Type Control}" x:Key="BaseStyle">
+    <Style TargetType="{x:Type Control}" x:Key="BaseStyle"> 
         <Setter Property="FontFamily" Value="{StaticResource xFonts.Digital}" />
         <!-- 像这样引用一个已经存在的字体 -->
         <!--<Setter Property="FontFamily" Value="Source Code Pro" />-->
@@ -36,7 +36,7 @@
     </Style>
 
     <!-- 设置所有控件的默认字体和字号 -->
-    <!--<Style TargetType="{x:Type Button}" BasedOn="{StaticResource BaseStyle}" />-->
+    <Style TargetType="{x:Type Button}" BasedOn="{StaticResource BaseStyle}" />
     <Style TargetType="{x:Type Label}" BasedOn="{StaticResource BaseStyle}" />
     <Style TargetType="{x:Type TextBox}" BasedOn="{StaticResource BaseStyle}" />
     <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource BaseTextBlockStyle}" />

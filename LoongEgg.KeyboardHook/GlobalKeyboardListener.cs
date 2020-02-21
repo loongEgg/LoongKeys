@@ -101,8 +101,7 @@ namespace LoongEgg.KeyboardHook
 
                 KeysStatus[index] = action;
                 Debug.WriteLine($"{index} {KeysStatus[index]}");
-                GlobalKeyboardInputEvent?.Invoke(this, new GlobalKeyboardInputEvent(index, KeysStatus[index]));
-
+                GlobalKeyboardInputEvent?.Invoke(this, new GlobalKeyboardInputEvent(index, KeysStatus[index])); 
             }
 
             return CallNextHookEx(nCode, wParam, lParam);
