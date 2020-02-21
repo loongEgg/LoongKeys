@@ -24,14 +24,14 @@ namespace LoongEgg.KeyboardHook
 
         private bool disposed = false;
 
-        /*---------------------------  Constructor  ---------------------------*/
+        /*---------------------------  Constructors ---------------------------*/
         /// <summary>
         ///     初始化键盘/鼠标监听钩子的基类
         /// </summary>
         ///     <param name="idHook">
         ///     Mouse or keyboard <see cref="IdHooks"/>
         ///     </param>
-        public BaseGlobalListener(IdHooks idHook)
+        protected BaseGlobalListener(IdHooks idHook)
         {
             IdHook = IdHook;
             _HookProc = HookCallBack;
