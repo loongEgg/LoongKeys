@@ -5,17 +5,18 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:LoongEgg.LoongKeys"
         xmlns:vmb="clr-namespace:LoongEgg.ViewModelBase;assembly=LoongEgg.ViewModelBase"
+        xmlns:ctrl="clr-namespace:LoongEgg.ViewBase.Controls;assembly=LoongEgg.ViewBase.Controls"
         mc:Ignorable="d"
         Title="MainWindow" 
         WindowStartupLocation="CenterScreen"
-        Height="180" Width="360" 
+        Height="150" Width="520"
         Background="Transparent"  
         WindowStyle="None" 
         AllowsTransparency="True"
         SnapsToDevicePixels="True"
         Topmost="True">
 
-         
+    <!--Height="680" Width="360"--> 
 
     <!-- 
          微信: InnerGeeker
@@ -24,7 +25,7 @@
 
     <Grid >
         <Grid.RowDefinitions>
-            <RowDefinition Height="50"/>
+            <RowDefinition Height="36"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="0"/>
         </Grid.RowDefinitions>
@@ -36,7 +37,7 @@
                 MouseLeave="Border_MouseLeave"
                 MouseLeftButtonDown="Border_MouseLeftButtonDown">
 
-                <!--Background="{StaticResource xBackground.Title}"--> 
+            <!--Background="{StaticResource xBackground.Title}"-->
             <!-- 改变边框的逻辑 -->
             <Border.Triggers>
                 <EventTrigger RoutedEvent="MouseLeave">
@@ -70,7 +71,7 @@
                     </BeginStoryboard>
                 </EventTrigger>
             </Border.Triggers>
-   
+
             <!-- 隐藏标题逻辑 -->
             <x:Code>
                 <![CDATA[
@@ -97,11 +98,11 @@
                 x:Name="mainContentBorder"
                 Background="Transparent" 
                 BorderBrush="{StaticResource xBackground.Title}" 
-                Opacity="1"
-                Padding="0"
+                Opacity="1" 
+                ClipToBounds="True"
                 BorderThickness="2, 0, 2, 2"
                 MouseEnter="Border_MouseEnter">
- 
+
             <!-- Set DataContext = new MainContentViewModel{ ButtonIsEnabled = true }; -->
             <!--<Border.DataContext>
                 <local:MainContentViewModel ButtonIsEnabled ="True"/>
@@ -141,7 +142,7 @@
                     </BeginStoryboard>
                 </EventTrigger>
             </Border.Triggers>
- 
+
             <!-- 显示标题逻辑 -->
             <x:Code>
                 <![CDATA[
@@ -153,7 +154,7 @@
             <!-- View Model的最终用户们 -->
             <Grid>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="52"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
                 <!-- ViewModel 放在这里也是可以的,注意变化 -->
@@ -162,29 +163,34 @@
                     <local:MainContentViewModel />
                 </Grid.DataContext>
 
-                <Border Background="White" 
+                <!-- Blur glass -->
+                <Border Background="Black" 
                         Grid.Row="0" 
                         Grid.RowSpan="2"
-                        Opacity="0.15"
+                        Opacity="0.3"
                         BorderBrush="Black"
                         BorderThickness="3"
                         >
                     <Border.Effect>
                         <BlurEffect KernelType="Gaussian"
-                                    Radius="0" 
-                                    RenderingBias="Quality"/> 
+                                    Radius="1" 
+                                    RenderingBias="Quality"/>
                     </Border.Effect>
-                     
+
                 </Border>
 
+                <!-- Modifier Buttons -->
                 <UniformGrid Grid.Row="0"
-                             Columns="3" 
+                             Columns="4" 
+                             Margin="3.5,3.5,3.5,0"
                              Opacity="1">
                     <Button Content="Ctrl"  Style="{StaticResource ButtonStyle.IsEnabledGrow}" IsEnabled="{Binding IsCtrlEnabled}"/>
                     <Button Content="Shift" Style="{StaticResource ButtonStyle.IsEnabledGrow}" IsEnabled="{Binding IsShiftEnabled}"/>
-                    <Button Content="Alt"   Style="{StaticResource ButtonStyle.IsEnabledGrow}" IsEnabled="{Binding IsAltEnabled}"/> 
+                    <Button Content="Alt"   Style="{StaticResource ButtonStyle.IsEnabledGrow}" IsEnabled="{Binding IsAltEnabled}"/>
+                    <Button Content="Win"   Style="{StaticResource ButtonStyle.IsEnabledGrow}" IsEnabled="{Binding IsWinEnabled}"/>
                 </UniformGrid>
 
+                <!-- Drop shadow Frame -->
                 <Border Grid.Row="0" 
                         Grid.RowSpan="2"
                         Opacity="0.3"
@@ -195,10 +201,27 @@
                             BlurRadius="1" 
                             ShadowDepth="2"
                             RenderingBias="Quality" Opacity="1"/>
-                    </Border.Effect> 
+                    </Border.Effect>
                 </Border>
-            </Grid>
  
+                <!-- Keys Input -->
+                <ItemsControl Grid.Row="1" ItemsSource="{Binding Items}" >
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel Orientation="Horizontal" Margin="2">
+                            </StackPanel>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate >
+                            <ctrl:TextBlockCount Width="42" Height="42" 
+                                                 Text="{Binding Text}"
+                                                 Count="{Binding Flags}"/>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl> 
+            </Grid>
+
         </Border>
 
 

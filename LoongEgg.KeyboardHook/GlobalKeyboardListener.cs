@@ -17,7 +17,7 @@ namespace LoongEgg.KeyboardHook
     /// </summary>
     public class GlobalKeyboardListener : BaseGlobalListener
     {
-        public EventHandler<GlobalKeyboardInputEvent> GlobalKeyboardInputEvent { get; set; }
+        public EventHandler<GlobalKeyboardInputEventArgs> GlobalKeyboardInputEvent { get; set; }
 
         /// <summary>
         ///     键盘状态记录表
@@ -101,7 +101,7 @@ namespace LoongEgg.KeyboardHook
 
                 KeysStatus[index] = action;
                 Debug.WriteLine($"{index} {KeysStatus[index]}");
-                GlobalKeyboardInputEvent?.Invoke(this, new GlobalKeyboardInputEvent(index, KeysStatus[index])); 
+                GlobalKeyboardInputEvent?.Invoke(this, new GlobalKeyboardInputEventArgs(index, KeysStatus[index])); 
             }
 
             return CallNextHookEx(nCode, wParam, lParam);

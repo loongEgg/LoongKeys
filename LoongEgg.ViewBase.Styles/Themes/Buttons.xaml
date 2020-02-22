@@ -40,8 +40,8 @@
            x:Key="ButtonStyle.Window">
         <Setter Property="Foreground"      Value="White"/>
         <Setter Property="BorderThickness" Value="0"/>
-        <Setter Property="Width" Value="36"/>
-        <Setter Property="Height" Value="36"/>
+        <!--<Setter Property="Width" Value="36"/>
+        <Setter Property="Height" Value="36"/>-->
         <Setter Property="CommandParameter" Value="{Binding RelativeSource={RelativeSource AncestorType=Window}}"/>
     </Style>
 
@@ -51,14 +51,14 @@
            TargetType="{x:Type Button}">
         <Setter Property="Content"   Value="IsEnable Grow"/>
 
-        <Setter Property="Foreground"     Value="Black"/>
-        <Setter Property="BorderBrush"    Value="Black"/>
+        <Setter Property="Foreground"     Value="Gray"/>
+        <Setter Property="BorderBrush"    Value="Gray"/>
         
         <Setter Property="Background"     Value="Transparent"/>
         <Setter Property="BorderThickness"    Value="2"/>
 
-        <Setter Property="Margin"    Value="6"/>
-        <Setter Property="Padding"   Value="5"/> 
+        <Setter Property="Margin"    Value="4"/>
+        <Setter Property="Padding"   Value="4"/> 
 
         <Setter Property="IsEnabled" Value="False"/>
         <Setter Property="Template">
@@ -165,9 +165,10 @@
            BasedOn="{StaticResource ButtonStyle.Window}">
         <Setter Property="Background"  Value="Transparent"/>
         <Setter Property="Content" Value="Hover Grow"/>
-        <Setter Property="Margin"  Value="5"/>
-        <Setter Property="Width"  Value="32"/>
-        <Setter Property="Height"  Value="32"/>
+        <Setter Property="Margin"  Value="0"/>
+        <Setter Property="Width"  Value="36"/>
+        <Setter Property="Height"  Value="36"/>
+        <Setter Property="FontSize"  Value="3"/>
 
         <Setter Property="Template">
             <Setter.Value>
@@ -189,13 +190,25 @@
                             <Point X="0.5" Y="0.5"/>
                         </Border.RenderTransformOrigin>
 
-                        <!-- 原来是ContentPresenter -->
+                        <Viewbox x:Name="viewBox">
+                            <Viewbox.RenderTransform>
+                                <!-- 缩放变换 -->
+                                <ScaleTransform/>
+                            </Viewbox.RenderTransform>
+                            <Viewbox.RenderTransformOrigin>
+                                <!-- 缩放原点在Border中心 -->
+                                <Point X="0.5" Y="0.5"/>
+                            </Viewbox.RenderTransformOrigin>
+                            <!-- 原来是ContentPresenter -->
                         <TextBlock  Text="{TemplateBinding Content}" 
                                     Focusable="False" 
+                                    Padding="0,0,0.12,0"
+                                    FontSize="{TemplateBinding FontSize}"
                                     HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                                     Margin="{TemplateBinding Padding}"   
                                     SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" 
                                     VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </Viewbox>
                         <!-- 以上新增 -->
                     </Border>
 
@@ -205,12 +218,19 @@
                         <EventTrigger RoutedEvent="MouseEnter">
                             <BeginStoryboard>
                                 <Storyboard >
-                                    <DoubleAnimation To="1.2" Duration="0:0:0.2"
+                                    <DoubleAnimation To="1.3" Duration="0:0:0.2"
+                                                     Storyboard.TargetName="viewBox"
+                                                     Storyboard.TargetProperty="(RenderTransform).(ScaleTransform.ScaleY)"/>
+                                    <DoubleAnimation To="1.3" Duration="0:0:0.2"
+                                                     Storyboard.TargetName="viewBox"
+                                                     Storyboard.TargetProperty="(RenderTransform).(ScaleTransform.ScaleX)"/>
+
+                                    <!--<DoubleAnimation To="1.2" Duration="0:0:0.2"
                                                      Storyboard.TargetName="border"
                                                      Storyboard.TargetProperty="(RenderTransform).(ScaleTransform.ScaleY)"/>
                                     <DoubleAnimation To="1.2" Duration="0:0:0.2"
                                                      Storyboard.TargetName="border"
-                                                     Storyboard.TargetProperty="(RenderTransform).(ScaleTransform.ScaleX)"/>
+                                                     Storyboard.TargetProperty="(RenderTransform).(ScaleTransform.ScaleX)"/>-->
                                 </Storyboard>
                             </BeginStoryboard>
                         </EventTrigger>
@@ -219,12 +239,20 @@
                         <EventTrigger RoutedEvent="MouseLeave">
                             <BeginStoryboard>
                                 <Storyboard >
-                                    <DoubleAnimation To="1" Duration="0:0:0.2"
+                                    <!--<DoubleAnimation To="1" Duration="0:0:0.2"
                                                      Storyboard.TargetName="border"
                                                      Storyboard.TargetProperty="(RenderTransform).(ScaleTransform.ScaleY)"/>
                                     <DoubleAnimation To="1" Duration="0:0:0.2"
                                                      Storyboard.TargetName="border"
+                                                     Storyboard.TargetProperty="(RenderTransform).(ScaleTransform.ScaleX)"/>-->
+                                    
+                                    <DoubleAnimation To="1" Duration="0:0:0.2"
+                                                     Storyboard.TargetName="viewBox"
+                                                     Storyboard.TargetProperty="(RenderTransform).(ScaleTransform.ScaleY)"/>
+                                    <DoubleAnimation To="1" Duration="0:0:0.2"
+                                                     Storyboard.TargetName="viewBox"
                                                      Storyboard.TargetProperty="(RenderTransform).(ScaleTransform.ScaleX)"/>
+                                    
                                 </Storyboard>
                             </BeginStoryboard>
                         </EventTrigger>

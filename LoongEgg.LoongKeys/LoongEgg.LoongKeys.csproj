@@ -54,6 +54,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="Views\TestWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -61,6 +65,10 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ViewModels\KeyInput.cs" />
+    <Compile Include="Views\TestWindow.xaml.cs">
+      <DependentUpon>TestWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\KeyInputHelper.cs" />
     <Compile Include="ViewModels\MainContentViewModel.cs" />
@@ -100,6 +108,10 @@
     <ProjectReference Include="..\LoongEgg.KeyboardHook\LoongEgg.KeyboardHook.csproj">
       <Project>{e4eec062-13fa-478f-9b4d-d2e69c460d8f}</Project>
       <Name>LoongEgg.KeyboardHook</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LoongEgg.ViewBase.Controls\LoongEgg.ViewBase.Controls.csproj">
+      <Project>{2740953f-b67b-408c-bd30-37dc6cd7a65a}</Project>
+      <Name>LoongEgg.ViewBase.Controls</Name>
     </ProjectReference>
     <ProjectReference Include="..\LoongEgg.ViewBase.Styles\LoongEgg.ViewBase.Styles.csproj">
       <Project>{da8d85b2-2d91-4fd5-82a0-fcc8ed6f66e4}</Project>
