@@ -59,13 +59,19 @@ namespace LoongEgg.KeyboardHook
         /// </summary>
         ///     <param name="nCode">
         ///         哪一个键发生了输入
+        ///         Which key is raising a message
         ///     </param>
         ///     <param name="wParam">
         ///         事件类型，抬起/按下？
+        ///         up / down?
         ///     </param>
         ///     <param name="lParam">
         ///     </param>
-        /// <returns></returns>
+        /// <returns>
+        /// </returns>
+        /// <remarks>
+        ///     <see cref="BaseGlobalListener"/> for more infomation
+        /// </remarks>
         protected override IntPtr HookCallBack(int nCode, IntPtr wParam, IntPtr lParam)
         {
             if (nCode >= 0) // 大于等于0才是正确的消息

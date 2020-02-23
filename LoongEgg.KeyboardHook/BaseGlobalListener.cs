@@ -57,6 +57,7 @@ namespace LoongEgg.KeyboardHook
         /*--------------------------  Public Methods  -------------------------*/
         /// <summary>
         ///     装载键盘/鼠标钩子函数
+        ///     <see cref="UnHook"/> automaticaly as this <see cref="GlobalKeyboardListener"/>  implement <see cref="IDisposable"/> and has a auto destructor inherit from <see cref="BaseGlobalListener"/>
         /// </summary>
         public void SetHook()
         {
@@ -104,9 +105,17 @@ namespace LoongEgg.KeyboardHook
         ///     键盘/鼠标监控器钩子的回调方法, 钩子函数执行完会调用此方法 
         ///     实现这个方法后，不要忘记return <see cref="CallNextHookEx(int, IntPtr, IntPtr)"/>
         /// </summary>
-        /// <param name="nCode"></param>
-        /// <param name="wParam"></param>
-        /// <param name="lParam"></param>
+        ///     <param name="nCode">
+        ///         引起本次消息的来源 键盘 / 鼠标 ？
+        ///         the key / mouse raise an action
+        ///     </param>
+        ///     <param name="wParam">
+        ///         消息类型
+        ///         what kind of  <see cref="WM"/>
+        ///     </param>
+        ///     <param name="lParam">
+        ///         some more message i haven't use
+        ///     </param>
         /// <returns></returns>
         protected abstract IntPtr HookCallBack(int nCode, IntPtr wParam, IntPtr lParam);
  
