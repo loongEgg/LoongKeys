@@ -215,8 +215,8 @@
                     <ItemsControl.ItemTemplate>
                         <DataTemplate >
                             <ctrl:TextBlockCount Width="42" Height="42" 
-                                                 Text="{Binding Text}"
-                                                 Count="{Binding Flags}"/>
+                                                 Count="{Binding Flags}"
+                                                 Text="{Binding Text}"/>
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
                 </ItemsControl> 
@@ -224,7 +224,9 @@
 
         </Border>
 
-
+        <!--ctrl:TextBlockCount Width="42" Height="42" 
+                                                 Text="{Binding Text}"
+                                                 Count="{Binding Flags}"/>-->
         <!-- 页脚 -->
 
     </Grid>

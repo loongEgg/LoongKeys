@@ -54,10 +54,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="Views\TestWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Views\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -67,10 +63,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="ViewModels\KeyInput.cs" />
-    <Compile Include="Views\TestWindow.xaml.cs">
-      <DependentUpon>TestWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="ViewModels\KeyInputHelper.cs" />
+    <Compile Include="Helpers\KeyInputHelper.cs" />
     <Compile Include="ViewModels\MainContentViewModel.cs" />
     <Compile Include="Views\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>

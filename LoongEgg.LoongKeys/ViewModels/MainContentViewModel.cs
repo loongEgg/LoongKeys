@@ -74,13 +74,19 @@ namespace LoongEgg.LoongKeys
             listenerOnKeyboard.SetHook();
             listenerOnKeyboard.GlobalKeyboardInputEvent += GlobalKeyboard_InputEvent;
 
+            Items.Add(new KeyInput { Text = "f11", Flags = 9 });
         }
 
         private void GlobalKeyboard_InputEvent(object sender, GlobalKeyboardInputEventArgs e)
-        {
-            if (!KeyInputHelper.ModifierCheck(this, e.Key, e.KeyAction))
-                    KeyInputHelper.LatterCheck(this, e.Key, e.KeyAction);
-       }
+        {  
+
+            var flag = 
+                KeyInputHelper.ModifierCheck(this, e.Key, e.KeyAction) 
+                ? true 
+                : KeyInputHelper.LatterCheck(this, e.Key, e.KeyAction)
+                    ? true: 
+                    KeyInputHelper.Redo(this, e.Key, e.KeyAction);
+        }
     }
      
 }

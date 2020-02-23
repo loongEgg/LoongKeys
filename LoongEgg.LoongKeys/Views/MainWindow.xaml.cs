@@ -32,11 +32,10 @@ namespace LoongEgg.LoongKeys
         // Step: 13.用Debug输出检查键盘监听器的功能 
         // Step: 14.完善键盘监听器的截获事件  
         // Step: 15.三大金刚的按压事件 
-        // Step: 16.定制和使用一个自定义控件UserControl,设计时绑定 
-        // Todo: 17.DependencyProperty和[Description]你的MVVM模式更可靠的UserControl绑定
+        // Step: 16.定制和使用一个自定义控件UserControl,设计时绑定  
+        // Step: 17.DependencyProperty和[Description]你的MVVM模式更可靠的UserControl绑定
 
-        // TODO: 完成前后端的最后绑定与界面设计
-        // TODO: TextBlock的放大效果
+        // TODO: 18.[Final]按键输入动画和Redo
 
 
     }

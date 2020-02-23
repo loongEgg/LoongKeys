@@ -1,4 +1,5 @@
 ﻿using LoongEgg.KeyboardHook;
+using System;
 using System.Collections.ObjectModel;
 
 namespace LoongEgg.LoongKeys
@@ -68,7 +69,7 @@ namespace LoongEgg.LoongKeys
                 }
                 if (last == -1 || key!= vm.Items[last].Text)
                 {
-                    vm.Items.Add(new KeyInput {Text= key, Flags=0 }); 
+                    vm.Items.Add(new KeyInput {Text= key, Flags = 1 }); 
                 }
                 else
                 {
@@ -77,6 +78,32 @@ namespace LoongEgg.LoongKeys
                     vm.Items[last].Text = key;
                 }
                 return true;
+            }
+            return false;
+        }
+
+        public static bool Redo(MainContentViewModel vm, string key, KeyAction keyAction)
+        {
+            if (key.ToLower() == "back")
+            {
+                if (keyAction == KeyAction.Down)
+                {
+
+                if (vm.Items.Count >= 1)
+                {
+                    int last = vm.Items.Count - 1;
+                    if (vm.Items[last].Flags > 1)
+                    {
+                        vm.Items[last].Flags -= 1;
+                    }
+                    else
+                    {
+                        vm.Items.RemoveAt(last);
+                    }
+                    return true;
+                }
+
+                }
             }
             return false;
         }
