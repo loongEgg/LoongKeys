@@ -15,6 +15,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoongEgg.ViewModelBase", "L
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Note", "Note", "{101CCD0E-DF1C-46C7-8600-705BA036AC96}"
 	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
 		工具和技巧.md = 工具和技巧.md
 	EndProjectSection
 EndProject

@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="LoongEgg.KeyboardHook.BaseGlobalListener">
+    <Position X="6.5" Y="2.75" Width="3.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAACAAACAAAAAACAAiAAAAAAAAAAAQAAEAgAA=</HashCode>
+      <FileName>BaseGlobalListener.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="LoongEgg.KeyboardHook.GlobalKeyboardInputEventArgs">
+    <Position X="10.25" Y="6.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAEAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GlobalKeyboardInputEventArgs.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LoongEgg.KeyboardHook.GlobalKeyboardListener">
+    <Position X="6.5" Y="6.5" Width="3.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAIBAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GlobalKeyboardListener.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LoongEgg.KeyboardHook.User32Dll">
+    <Position X="6.5" Y="0.75" Width="3.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAEAAADAAAAAAAAAAAAAAAAAAgAAA=</HashCode>
+      <FileName>User32Dll.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Enum Name="LoongEgg.KeyboardHook.IdHooks">
+    <Position X="13" Y="0.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AIAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAEAAAAAgAA=</HashCode>
+      <FileName>IdHooks.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="LoongEgg.KeyboardHook.KeyAction">
+    <Position X="15.25" Y="6.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAI=</HashCode>
+      <FileName>KeyAction.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="LoongEgg.KeyboardHook.WM">
+    <Position X="13" Y="6.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAACAAAIAAAAAAIAgAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>WM.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Delegate Name="LoongEgg.KeyboardHook.LowLevelHookProc">
+    <Position X="10.25" Y="0.75" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAEAAAAAAAAAAA=</HashCode>
+      <FileName>User32Dll.cs</FileName>
+    </TypeIdentifier>
+  </Delegate>
+  <Font Name="Microsoft YaHei UI" Size="9" />
+</ClassDiagram>

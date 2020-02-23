@@ -51,5 +51,8 @@
     <Compile Include="User32Dll.cs" />
     <Compile Include="WM.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="KeyboardHook.cd" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
