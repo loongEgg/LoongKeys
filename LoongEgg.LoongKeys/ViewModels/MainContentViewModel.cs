@@ -85,7 +85,7 @@ namespace LoongEgg.LoongKeys
                 ? true 
                 : KeyInputHelper.LatterCheck(this, e.Key, e.KeyAction)
                     ? true: 
-                    KeyInputHelper.Redo(this, e.Key, e.KeyAction);
+                    KeyInputHelper.Undo(this, e.Key, e.KeyAction);
         }
     }
      

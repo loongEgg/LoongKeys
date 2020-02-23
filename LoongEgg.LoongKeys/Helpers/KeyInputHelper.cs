@@ -82,13 +82,10 @@ namespace LoongEgg.LoongKeys
             return false;
         }
 
-        public static bool Redo(MainContentViewModel vm, string key, KeyAction keyAction)
+        public static bool Undo(MainContentViewModel vm, string key, KeyAction keyAction)
         {
-            if (key.ToLower() == "back")
-            {
-                if (keyAction == KeyAction.Down)
-                {
-
+            if (key.ToLower() == "back" && keyAction == KeyAction.Down)
+            { 
                 if (vm.Items.Count >= 1)
                 {
                     int last = vm.Items.Count - 1;
@@ -101,9 +98,7 @@ namespace LoongEgg.LoongKeys
                         vm.Items.RemoveAt(last);
                     }
                     return true;
-                }
-
-                }
+                } 
             }
             return false;
         }
