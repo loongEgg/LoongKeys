@@ -4,17 +4,18 @@
     xmlns:local="clr-namespace:LoongEgg.ViewBase.Styles">
 
 
-    <!-- 
-         微信: InnerGeeker
-         微信 / B站: 香辣恐龙蛋
+    <!--
+        微信: InnerGeeker
+        微信 / B站: 香辣恐龙蛋
     -->
 
-    <!-- 所有资源集合在这里 -->
+    <!--  所有资源集合在这里  -->
     <ResourceDictionary.MergedDictionaries>
-        <!-- Order is important -->
+        <!--  Order is important  -->
         <ResourceDictionary Source="Colors.xaml" />
         <ResourceDictionary Source="Fonts.xaml" />
         <ResourceDictionary Source="Buttons.xaml" />
+        <ResourceDictionary Source="BaseWindowStyle.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
 </ResourceDictionary>

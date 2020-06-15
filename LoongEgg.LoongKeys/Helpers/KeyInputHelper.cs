@@ -139,7 +139,7 @@ namespace LoongEgg.LoongKeys
             }
             return false;
         }
-        // TODO: Finish the TranslateTable, fore example [OemOpenBrackets] to "["
+        // TODO: Finish the TranslateTable, for example [OemOpenBrackets] to "["
 
         /// <summary>
         ///     转义表
@@ -174,6 +174,9 @@ namespace LoongEgg.LoongKeys
                 { "Multiply".ToLower(),  "*"},
                 { "Subtract".ToLower(),  "-"},
                 { "Add".ToLower(),       "+"},
+
+                { "PageUp".ToLower(),     "PU"},
+                { "Next".ToLower(),       "PD"},
             };
 
         /// <summary>
