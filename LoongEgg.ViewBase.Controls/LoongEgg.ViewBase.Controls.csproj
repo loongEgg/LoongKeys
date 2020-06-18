@@ -32,6 +32,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="LoongEgg.MvvmCore, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\LoongEgg.MvvmCore.2.0.0-alp\lib\net45\LoongEgg.MvvmCore.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
@@ -75,21 +78,20 @@
       <DependentUpon>TextBlockCount.xaml</DependentUpon>
     </Compile>
     <Compile Include="TextBlockCountDesignModel.cs" />
+    <Compile Include="WindowStateManeger.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <Resource Include="Fonts\Let%27s go Digital Regular.ttf" />
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\LoongEgg.ViewModelBase\LoongEgg.ViewModelBase.csproj">
-      <Project>{DE8FF96D-AB58-44D4-A410-160C02A1248E}</Project>
-      <Name>LoongEgg.ViewModelBase</Name>
-    </ProjectReference>
+    <Folder Include="ViewModel\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

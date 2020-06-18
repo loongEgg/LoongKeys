@@ -1,0 +1,20 @@
+﻿<Window
+    x:Class="LoongEgg.LoongKeys.LoongKeysView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:ctrl="clr-namespace:LoongEgg.ViewBase.Controls;assembly=LoongEgg.ViewBase.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:LoongEgg.LoongKeys"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Title="LoongKeysView"
+    Width="800"
+    Height="450"
+    d:DataContext="{x:Static local:DesignInstance.LoongKeysViewModel}"
+    FontSize="32"
+    Foreground="Black"
+    mc:Ignorable="d">
+    <Grid>
+        <!--<TextBlock Text="{Binding LastKeyClick}" />-->
+        <ctrl:TextBlockCount Foreground="Black" Text="{Binding LastKeyClick}" />
+    </Grid>
+</Window>

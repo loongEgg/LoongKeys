@@ -1,5 +1,5 @@
 ﻿using LoongEgg.KeyboardHook;
-using LoongEgg.ViewModelBase;
+using LoongEgg.MvvmCore;
 using System;
 using System.Collections.ObjectModel;
 
@@ -8,14 +8,14 @@ namespace LoongEgg.LoongKeys
     /// <summary>
     ///     The View Model of Main Content in <see cref="MainWindow"/>
     /// </summary>
-    public class MainContentViewModel : BaseViewModel
+    public class MainContentViewModel : ViewModel
     {
         /// <summary>
         ///     Ctrl键按下？
         /// </summary>
         public bool IsCtrlEnabled {
             get => _IsCtrlEnabled;
-            set => Set(ref _IsCtrlEnabled, value);
+            set => SetProperty(ref _IsCtrlEnabled, value);
         }
         private bool _IsCtrlEnabled;
 
@@ -24,7 +24,7 @@ namespace LoongEgg.LoongKeys
         /// </summary>
         public bool IsShiftEnabled {
             get => _IsShiftEnabled;
-            set => Set(ref _IsShiftEnabled, value);
+            set => SetProperty(ref _IsShiftEnabled, value);
         }
         private bool _IsShiftEnabled;
 
@@ -33,7 +33,7 @@ namespace LoongEgg.LoongKeys
         /// </summary>
         public bool IsAltEnabled {
             get => _IsAltEnabled;
-            set => Set(ref _IsAltEnabled, value);
+            set => SetProperty(ref _IsAltEnabled, value);
         }
         private bool _IsAltEnabled;
 
@@ -42,7 +42,7 @@ namespace LoongEgg.LoongKeys
         /// </summary>
         public bool IsTabEnabled {
             get => _IsTabEnabled;
-            set => Set(ref _IsTabEnabled, value);
+            set => SetProperty(ref _IsTabEnabled, value);
         }
         private bool _IsTabEnabled;
 
@@ -51,7 +51,7 @@ namespace LoongEgg.LoongKeys
         /// </summary>
         public bool IsWinEnabled {
             get => _IsWinEnabled;
-            set => Set(ref _IsWinEnabled, value);
+            set => SetProperty(ref _IsWinEnabled, value);
         }
         private bool _IsWinEnabled;
          
@@ -60,7 +60,7 @@ namespace LoongEgg.LoongKeys
         /// </summary>
         public bool IsContinueInput {
             get => _IsContinueInput;
-            set => Set(ref _IsContinueInput, value);
+            set => SetProperty(ref _IsContinueInput, value);
         }
         private bool _IsContinueInput = false;
 
@@ -68,7 +68,7 @@ namespace LoongEgg.LoongKeys
         public string KeyClicked
         {
             get { return _KeyClicked; }
-            set { Set(ref _KeyClicked, value); }
+            set { SetProperty(ref _KeyClicked, value); }
         }
         private string _KeyClicked;
 
@@ -77,7 +77,7 @@ namespace LoongEgg.LoongKeys
         /// </summary>
         public ObservableCollection<KeyInput> Items {
             get => _Items;
-            set => Set(ref _Items, value);
+            set => SetProperty(ref _Items, value);
         } 
         private ObservableCollection<KeyInput> _Items = new ObservableCollection<KeyInput>();
 

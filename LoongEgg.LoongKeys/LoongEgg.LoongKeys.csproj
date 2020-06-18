@@ -37,6 +37,12 @@
     <ApplicationIcon>FriedEgg.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="LoongEgg.LoongLog, Version=2.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\LoongEgg.LoongLog.2.1.0\lib\net45\LoongEgg.LoongLog.dll</HintPath>
+    </Reference>
+    <Reference Include="LoongEgg.MvvmCore, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\LoongEgg.MvvmCore.2.0.0-alp\lib\net45\LoongEgg.MvvmCore.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
@@ -57,6 +63,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="Views\LoongKeysView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -64,6 +74,11 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DesignInstance\DesignInstance.cs" />
+    <Compile Include="ViewModels\LoongKeysViewModel.cs" />
+    <Compile Include="Views\LoongKeysView.xaml.cs">
+      <DependentUpon>LoongKeysView.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\KeyInput.cs" />
     <Compile Include="Helpers\KeyInputHelper.cs" />
@@ -92,6 +107,7 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <Resource Include="Fonts\Let%27s go Digital Regular.ttf" />
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -113,13 +129,10 @@
       <Project>{da8d85b2-2d91-4fd5-82a0-fcc8ed6f66e4}</Project>
       <Name>LoongEgg.ViewBase.Styles</Name>
     </ProjectReference>
-    <ProjectReference Include="..\LoongEgg.ViewModelBase\LoongEgg.ViewModelBase.csproj">
-      <Project>{de8ff96d-ab58-44d4-a410-160c02a1248e}</Project>
-      <Name>LoongEgg.ViewModelBase</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Resource Include="FriedEgg.ico" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

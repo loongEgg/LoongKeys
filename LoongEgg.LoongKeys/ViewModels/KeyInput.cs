@@ -1,12 +1,12 @@
-﻿using LoongEgg.ViewModelBase;
+﻿using LoongEgg.MvvmCore;
 
 namespace LoongEgg.LoongKeys
 {
-    public class KeyInput : BaseViewModel
+    public class KeyInput : ViewModel
     {
         public string Text {
             get => _Text;
-            set => Set(ref _Text, value);
+            set => SetProperty(ref _Text, value);
         }
         private string _Text;
          
@@ -15,7 +15,7 @@ namespace LoongEgg.LoongKeys
         /// </summary>
         public int Flags {
             get => _Count;
-            set => Set(ref _Count, value);
+            set => SetProperty(ref _Count, value);
         }
         private int _Count;
 

@@ -6,7 +6,6 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:LoongEgg.LoongKeys"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:vmb="clr-namespace:LoongEgg.ViewModelBase;assembly=LoongEgg.ViewModelBase"
     Title="MainWindow"
     Width="520"
     Height="150"
@@ -96,7 +95,7 @@
                 <!--  RelayCommand方法控制最大化、最小化和关闭  -->
                 <StackPanel
                     HorizontalAlignment="Right"
-                    DataContext="{x:Static vmb:WindowStateManager.Instance}"
+                    DataContext="{x:Static ctrl:WindowStateViewModel.Instance}"
                     Orientation="Horizontal">
                     <Button
                         Command="{Binding CommandMinimze}"

@@ -1,19 +1,19 @@
-﻿using LoongEgg.ViewModelBase;
+﻿using LoongEgg.MvvmCore;
 
 namespace LoongEgg.ViewBase.Controls
 {
-    class TextBlockCountDesignModel :BaseViewModel
+    class TextBlockCountDesignModel :ViewModel
     {
 
         public string Text {
             get => _Text;
-            set => Set(ref _Text, value);
+            set => SetProperty(ref _Text, value);
         }
         private string _Text;
          
         public int Count {
             get => _Count;
-            set => Set(ref _Count, value);
+            set => SetProperty(ref _Count, value);
         }
         private int _Count;
 
