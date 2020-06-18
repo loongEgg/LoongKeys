@@ -1,5 +1,6 @@
 ﻿using LoongEgg.KeyboardHook;
 using LoongEgg.ViewModelBase;
+using System;
 using System.Collections.ObjectModel;
 
 namespace LoongEgg.LoongKeys
@@ -62,7 +63,15 @@ namespace LoongEgg.LoongKeys
             set => Set(ref _IsContinueInput, value);
         }
         private bool _IsContinueInput = false;
-         
+
+
+        public string KeyClicked
+        {
+            get { return _KeyClicked; }
+            set { Set(ref _KeyClicked, value); }
+        }
+        private string _KeyClicked;
+
         /// <summary>
         ///     输入列表
         /// </summary>
@@ -75,29 +84,32 @@ namespace LoongEgg.LoongKeys
         /// <summary>
         ///     全局键盘监控器
         /// </summary>
-        readonly GlobalKeyboardListener listenerOnKeyboard;
+        readonly KeyboardListener listenerOnKeyboard;
 
         /// <summary>
         ///  The Constructor of <see cref="MainContentViewModel"/>
         /// </summary>
         public MainContentViewModel()
         {
-            listenerOnKeyboard = new GlobalKeyboardListener();
+            Console.WriteLine("Hook");
+            listenerOnKeyboard = new KeyboardListener();
             listenerOnKeyboard.SetHook();
-            listenerOnKeyboard.GlobalKeyboardInputEvent += GlobalKeyboard_InputEvent; 
+            listenerOnKeyboard.KeyboardActed += OnKeyboardActed; 
         }
 
         /// <summary>
         ///     Raised when a keybord input happen
         /// </summary>
         ///     <param name="sender">
-        ///         The <see cref="GlobalKeyboardListener"/>
+        ///         The <see cref="KeyboardListener"/>
         ///     </param>
         ///     <param name="e">
         ///         A Event Args Defined in name space <see cref="KeyboardHook"/>
         ///     </param>
-        private void GlobalKeyboard_InputEvent(object sender, GlobalKeyboardInputEventArgs e)
-        {   
+        private void OnKeyboardActed(object sender, KeyboardActEventArgs e)
+        {
+            KeyClicked = e.Key;
+            Console.WriteLine(KeyClicked);
             var flag = 
                     KeyInputHelper.ModifierCheck(this, e.Key, e.KeyAction) 
                     ? true 

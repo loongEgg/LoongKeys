@@ -45,9 +45,7 @@
                                 <DoubleAnimation To="1.5" Duration="0:0:0.2" 
                                              AutoReverse="True"    
                                              Storyboard.TargetName="border" 
-                                             Storyboard.TargetProperty="
-                                                (RenderTransform)
-                                                .(ScaleTransform.ScaleX)"/>
+                                             Storyboard.TargetProperty="(RenderTransform).(ScaleTransform.ScaleX)"/>
                                 <DoubleAnimation To="1.5" Duration="0:0:0.2" 
                                                  AutoReverse="True"             
                                                  Storyboard.TargetName="border" 

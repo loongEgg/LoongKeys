@@ -3,7 +3,7 @@ using System.Diagnostics;
 
 namespace LoongEgg.KeyboardHook
 {
-    public abstract class BaseGlobalListener : IDisposable
+    public abstract class BaseListener : IDisposable
     {
         /*-------------------------  Public Property  -------------------------*/
         /// <summary>
@@ -31,7 +31,7 @@ namespace LoongEgg.KeyboardHook
         ///     <param name="idHook">
         ///     Mouse or keyboard <see cref="IdHooks"/>
         ///     </param>
-        protected BaseGlobalListener(IdHooks idHook)
+        protected BaseListener(IdHooks idHook)
         {
             IdHook = idHook;
             _HookProc = HookCallBack;
@@ -52,12 +52,12 @@ namespace LoongEgg.KeyboardHook
             disposed = true;
         }
 
-        ~BaseGlobalListener() => Dispose(false);
+        ~BaseListener() => Dispose(false);
 
         /*--------------------------  Public Methods  -------------------------*/
         /// <summary>
         ///     装载键盘/鼠标钩子函数
-        ///     <see cref="UnHook"/> automaticaly as this <see cref="GlobalKeyboardListener"/>  implement <see cref="IDisposable"/> and has a auto destructor inherit from <see cref="BaseGlobalListener"/>
+        ///     <see cref="UnHook"/> automaticaly as this <see cref="KeyboardListener"/>  implement <see cref="IDisposable"/> and has a auto destructor inherit from <see cref="BaseListener"/>
         /// </summary>
         public void SetHook()
         {

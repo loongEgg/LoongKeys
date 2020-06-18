@@ -2,13 +2,13 @@
 
 namespace LoongEgg.KeyboardHook
 {
-    public class GlobalKeyboardInputEventArgs : EventArgs
+    public class KeyboardActEventArgs : EventArgs
     {
         public string Key { get; private set; }
 
         public KeyAction KeyAction { get; private set; }
 
-        public GlobalKeyboardInputEventArgs(string key, KeyAction action)
+        public KeyboardActEventArgs(string key, KeyAction action)
         {
             Key = key;
             KeyAction = action;

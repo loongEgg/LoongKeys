@@ -15,9 +15,9 @@ namespace LoongEgg.KeyboardHook
     ///     全局键盘监听器
     ///     Global Keyboard Listener
     /// </summary>
-    public class GlobalKeyboardListener : BaseGlobalListener
+    public class KeyboardListener : BaseListener
     {
-        public EventHandler<GlobalKeyboardInputEventArgs> GlobalKeyboardInputEvent { get; set; }
+        public EventHandler<KeyboardActEventArgs> KeyboardActed { get; set; }
 
         /// <summary>
         ///     键盘状态记录表
@@ -28,7 +28,7 @@ namespace LoongEgg.KeyboardHook
         ///     初始化键盘记录表
         ///     Initialize KeysStatus
         /// </summary>
-        static GlobalKeyboardListener()
+        static KeyboardListener()
         {
             if (KeysStatus == null)
             {
@@ -49,9 +49,9 @@ namespace LoongEgg.KeyboardHook
         }
 
         /// <summary>
-        ///     Constructor of <see cref="GlobalKeyboardListener"/>
+        ///     Constructor of <see cref="KeyboardListener"/>
         /// </summary>
-        public GlobalKeyboardListener() : base(IdHooks.WH_KEYBOARD_LL) { }
+        public KeyboardListener() : base(IdHooks.WH_KEYBOARD_LL) { }
 
         /// <summary>
         ///     当发生键盘输入时钩子会自动调用此方法
@@ -70,10 +70,11 @@ namespace LoongEgg.KeyboardHook
         /// <returns>
         /// </returns>
         /// <remarks>
-        ///     <see cref="BaseGlobalListener"/> for more infomation
+        ///     <see cref="BaseListener"/> for more infomation
         /// </remarks>
         protected override IntPtr HookCallBack(int nCode, IntPtr wParam, IntPtr lParam)
         {
+            Debug.WriteLine(nCode);
             if (nCode >= 0) // 大于等于0才是正确的消息
             {
                 // 虚拟键盘码转位WPF中的键盘值
@@ -107,7 +108,7 @@ namespace LoongEgg.KeyboardHook
 
                 KeysStatus[index] = action;
                 Debug.WriteLine($"{index} {KeysStatus[index]}");
-                GlobalKeyboardInputEvent?.Invoke(this, new GlobalKeyboardInputEventArgs(index, KeysStatus[index])); 
+                KeyboardActed?.Invoke(this, new KeyboardActEventArgs(index, KeysStatus[index])); 
             }
 
             return CallNextHookEx(nCode, wParam, lParam);

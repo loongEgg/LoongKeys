@@ -91,7 +91,7 @@
                     HorizontalAlignment="Center"
                     VerticalAlignment="Center"
                     Foreground="White"
-                    Text="B站：香辣恐龙蛋" />
+                    Text="LoongKeys" />
 
                 <!--  RelayCommand方法控制最大化、最小化和关闭  -->
                 <StackPanel
